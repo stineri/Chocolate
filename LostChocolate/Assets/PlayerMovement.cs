@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5f;
     public float runSpeed = 10f;  // running speed
     public float crouchSpeed = 2f; // crouching speed
-    public float jumpForce = 5f;
+    public float jumpForce = 100f;
 
     Rigidbody2D rb;
 
