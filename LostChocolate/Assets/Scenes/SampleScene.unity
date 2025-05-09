@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stickPrefab: {fileID: 1636793390372279191, guid: 30c2e54eb29b79f4497e2a45af3bbf03, type: 3}
-  respawnTime: 2
+  respawnTime: 10
 --- !u!1 &522876450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,7 +1163,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

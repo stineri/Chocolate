@@ -121,7 +121,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -152,7 +152,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 0.05
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -176,7 +176,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd73d5f7bb810947b7c491e6a2a89c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 12
+  damage: 10
+  damageRate: 1
 --- !u!114 &-778196473480990263
 MonoBehaviour:
   m_ObjectHideFlags: 0
