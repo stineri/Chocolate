@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StickBehavior : MonoBehaviour
+public class ProjectileBehavior : MonoBehaviour
 {
     private bool isScheduledForDestruction = false;
 

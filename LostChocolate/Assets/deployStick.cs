@@ -6,8 +6,8 @@ public class deployStick : MonoBehaviour
     public GameObject stickPrefab;
 
     // Define the range for random respawn time
-    public float minRespawnTime = 5f; // Minimum respawn time (seconds)
-    public float maxRespawnTime = 10f; // Maximum respawn time (seconds)
+    public float minRespawnTime = 3f; // Minimum respawn time (seconds)
+    public float maxRespawnTime = 7f; // Maximum respawn time (seconds)
 
     void Start()
     {
