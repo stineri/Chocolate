@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
+    public GameObject FloatingTextPrefab;
     public Image healthBar;        // Reference to the health bar UI Image
     public float healthAmount = 100f; // Starting health
 
@@ -38,6 +39,22 @@ public class HealthManager : MonoBehaviour
         healthAmount = Mathf.Clamp(healthAmount, 0, 100);
         Debug.Log("Health after damage: " + healthAmount); // Debug log for health value
         UpdateHealthBar();
+
+        if (FloatingTextPrefab && healthAmount != 0)
+        {
+
+            ShowFloatingText(damage);
+        }
+
+           
+    }
+
+    void ShowFloatingText(float damage)
+    {
+        var go = Instantiate(FloatingTextPrefab, transform.position, Quaternion.identity, transform);
+        var textMesh = go.GetComponent<TextMesh>();
+        textMesh.text = damage.ToString();
+        textMesh.color = new Color(1f, 0f, 0f, 1f); // Set text color to red for damage indication
     }
 
     public void Heal(float healingAmount)
