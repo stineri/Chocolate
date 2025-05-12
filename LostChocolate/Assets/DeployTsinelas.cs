@@ -19,9 +19,9 @@ public class DeployTsinelas : MonoBehaviour
         // Instantiate the tsinelas prefab
         GameObject a = Instantiate(tsinelasPrefab);
 
-        // Random X position between 4 and 9
-        float randomX = Random.Range(4f, 9f);
-        Vector2 fixedPosition = new Vector2(randomX, 1f);
+        // Random Y position between 1 and 5
+        float randomY = Random.Range(1f, 5f);
+        Vector2 fixedPosition = new Vector2(8.51f, randomY); // Fixed X, random Y
         a.transform.position = fixedPosition;
 
         // Apply physics force to the tsinelas
