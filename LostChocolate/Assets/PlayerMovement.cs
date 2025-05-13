@@ -1,17 +1,17 @@
-using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Movement speed
     public float speed = 5f;
-    public float runSpeed = 10f;  // running speed
-    public float crouchSpeed = 2f; // crouching speed
-    public float jumpForce = 1000f;
+    public float runSpeed = 10f;
+    public float crouchSpeed = 2f;
+    public float jumpForce = 10f; // Adjusted to fit typical Rigidbody2D scale
 
-    Rigidbody2D rb;
+    private Rigidbody2D rb;
+    private bool grounded = false;
 
-    bool grounded;
+    private bool isStunned = false;
+    private float stunTimer = 0f;
 
     void Start()
     {
@@ -20,27 +20,41 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // Handle stun logic
+        if (isStunned)
+        {
+            stunTimer -= Time.deltaTime;
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y); // Stop horizontal movement but let vertical motion (falling) continue
+
+            if (stunTimer <= 0f)
+            {
+                isStunned = false;
+            }
+
+            return; // Skip movement and jumping input while stunned
+        }
+
         float hAxis = Input.GetAxis("Horizontal");
 
+        // Handle movement
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            // Crouch: move slower
             rb.linearVelocity = new Vector2(hAxis * crouchSpeed, rb.linearVelocity.y);
         }
         else if (Input.GetKey(KeyCode.LeftShift))
         {
-            // Run: move faster
             rb.linearVelocity = new Vector2(hAxis * runSpeed, rb.linearVelocity.y);
         }
         else
         {
-            // Normal walk speed
             rb.linearVelocity = new Vector2(hAxis * speed, rb.linearVelocity.y);
         }
 
+        // Handle jump
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            grounded = false; // Assume we're jumping
         }
     }
 
@@ -50,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         {
             grounded = true;
         }
+
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -58,6 +73,13 @@ public class PlayerMovement : MonoBehaviour
         {
             grounded = false;
         }
+    }
 
+    public void Stun(float duration)
+    {
+        Debug.Log("Player got stunned!");
+        isStunned = true;
+        stunTimer = duration;
+        rb.linearVelocity = Vector2.zero; // Stop immediately
     }
 }
