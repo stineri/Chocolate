@@ -22,17 +22,17 @@ public class enemyPatrol : MonoBehaviour
     {
         if (isPaused)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             return;
         }
 
         if (currPoint == PointB.transform)
         {
-            rb.velocity = new Vector2(speed, 0);
+            rb.linearVelocity = new Vector2(speed, 0);
         }
         else
         {
-            rb.velocity = new Vector2(-speed, 0);
+            rb.linearVelocity = new Vector2(-speed, 0);
         }
 
         if (Vector2.Distance(transform.position, currPoint.position) < 0.5f)

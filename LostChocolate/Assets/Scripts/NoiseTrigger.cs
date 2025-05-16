@@ -2,28 +2,26 @@ using UnityEngine;
 
 public class NoiseTrigger : MonoBehaviour
 {
-    public float noiseRadius = 5f;
+    [Tooltip("Optional: Assign the enemy manually to avoid FindWithTag.")]
+    public EnemyAI enemyAI;
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) // Choco
+        if (other.CompareTag("Player"))
         {
-            // Detect all enemies within noise radius
-            Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, noiseRadius);
-            foreach (var enemy in nearbyEnemies)
+            if (enemyAI == null)
             {
-                if (enemy.CompareTag("Enemy"))
+                GameObject enemy = GameObject.FindWithTag("Enemy"); // fallback
+                if (enemy != null)
                 {
-                    enemy.GetComponent<EnemyAI>()?.InvestigateSound(transform.position);
+                    enemyAI = enemy.GetComponent<EnemyAI>();
                 }
             }
-        }
-    }
 
-    void OnDrawGizmosSelected()
-    {
-        // Just for visualizing noise radius in Unity Editor
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, noiseRadius);
+            if (enemyAI != null)
+            {
+                enemyAI.InvestigateSound(transform.position);
+            }
+        }
     }
 }
