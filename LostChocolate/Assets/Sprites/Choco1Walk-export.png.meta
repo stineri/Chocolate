@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 5ec50abc9ee349346bb773625c17d601
+guid: ba70c5c1b7ae58c4f90e30be5a654c0c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3994121896720266760
-    second: Choco1Walk_0
+      213: -1671021458348800389
+    second: Choco1Walk-export_0
   - first:
-      213: -1006178404072869645
-    second: Choco1Walk_1
+      213: 7198811771662100285
+    second: Choco1Walk-export_1
   - first:
-      213: -456751080894457280
-    second: Choco1Walk_2
+      213: -1204402475717216912
+    second: Choco1Walk-export_2
   - first:
-      213: -573588410402952429
-    second: Choco1Walk_3
+      213: 1870925056967703123
+    second: Choco1Walk-export_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Choco1Walk_0
+      name: Choco1Walk-export_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 19
         y: 0
-        width: 31
-        height: 28
+        width: 292
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8f90164fb470298c0800000000000000
-      internalID: -3994121896720266760
+      spriteID: b76801b46d65fc8e0800000000000000
+      internalID: -1671021458348800389
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Choco1Walk_1
+      name: Choco1Walk-export_1
       rect:
         serializedVersion: 2
-        x: 33
+        x: 339
         y: 0
-        width: 31
-        height: 28
+        width: 292
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3f0319c82165902f0800000000000000
-      internalID: -1006178404072869645
+      spriteID: d37e1d65a2157e360800000000000000
+      internalID: 7198811771662100285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Choco1Walk_2
+      name: Choco1Walk-export_2
       rect:
         serializedVersion: 2
-        x: 65
+        x: 659
         y: 0
-        width: 31
-        height: 28
+        width: 292
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 04a9288df4b49a9f0800000000000000
-      internalID: -456751080894457280
+      spriteID: 075364c545a194fe0800000000000000
+      internalID: -1204402475717216912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Choco1Walk_3
+      name: Choco1Walk-export_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 969
         y: 0
-        width: 32
-        height: 28
+        width: 302
+        height: 271
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 31ba6a631643a08f0800000000000000
-      internalID: -573588410402952429
+      spriteID: 35affed3d6cd6f910800000000000000
+      internalID: 1870925056967703123
       vertices: []
       indices: 
       edges: []

@@ -12,7 +12,9 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isStunned = false;
     private float stunTimer = 0f;
+    private bool isFacingRIght = true;
 
+    [SerializeField] private Animator animator;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         float hAxis = Input.GetAxis("Horizontal");
+        flip();
 
         // Handle movement
         if (Input.GetKey(KeyCode.LeftControl))
@@ -55,6 +58,15 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             grounded = false; // Assume we're jumping
+        }
+
+        if (hAxis != 0 )
+        {
+            animator.SetBool("isRunning", true);
+        } else
+        {
+            animator.SetBool("isRunning", false);
+
         }
     }
 
@@ -81,5 +93,18 @@ public class PlayerMovement : MonoBehaviour
         isStunned = true;
         stunTimer = duration;
         rb.linearVelocity = Vector2.zero; // Stop immediately
+    }
+
+    private void flip()
+    {
+       float hAxis = Input.GetAxisRaw("Horizontal");
+
+        if (isFacingRIght && hAxis < 0f || !isFacingRIght && hAxis > 0f)
+        {
+            isFacingRIght = !isFacingRIght;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
     }
 }

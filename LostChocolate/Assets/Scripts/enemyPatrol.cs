@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class enemyPatrol : MonoBehaviour
 {
@@ -8,40 +8,37 @@ public class enemyPatrol : MonoBehaviour
     private Animator anim;
     private Transform currPoint;
     public float speed;
+    public bool isPaused = false; // ✅ Allows patrol to be paused externally
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         currPoint = PointB.transform;
         anim.SetBool("isRunning", true);
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Vector2 point = currPoint.position - transform.position;
+        if (isPaused)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
         if (currPoint == PointB.transform)
         {
-            rb.linearVelocity = new Vector2(speed, 0);
+            rb.velocity = new Vector2(speed, 0);
         }
         else
         {
-            rb.linearVelocity = new Vector2(-speed, 0);
+            rb.velocity = new Vector2(-speed, 0);
         }
 
-        if (Vector2.Distance(transform.position, currPoint.position) < 0.5f && currPoint == PointB.transform)
+        if (Vector2.Distance(transform.position, currPoint.position) < 0.5f)
         {
             flip();
-            currPoint = PointA.transform;
-        }
-
-        if (Vector2.Distance(transform.position, currPoint.position) < 0.5f && currPoint == PointA.transform)
-        {
-            flip();
-            currPoint = PointB.transform;
+            currPoint = (currPoint == PointB.transform) ? PointA.transform : PointB.transform;
         }
     }
 
