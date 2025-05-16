@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 37b81abbd339e8241892dea66af819a5
+guid: 01c0ef0e09a37bb4796edf654080b857
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2890709718746344522
-    second: Choco_0
+      213: -4401987493892659021
+    second: wooden crate 2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Choco_0
+      name: wooden crate 2_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 0
-        width: 292
-        height: 271
+        x: 9
+        y: 9
+        width: 302
+        height: 302
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6b3da5193d222e7d0800000000000000
-      internalID: -2890709718746344522
+      spriteID: 3b8e0d072bff8e2c0800000000000000
+      internalID: -4401987493892659021
       vertices: []
       indices: 
       edges: []

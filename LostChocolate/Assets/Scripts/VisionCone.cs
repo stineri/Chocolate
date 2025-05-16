@@ -31,7 +31,16 @@ public class VisionCone : MonoBehaviour
     {
         if (isTouchingPlayer && Player != null)
         {
-            Player.GetComponent<HealthManager>()?.TakeDamage(damage);
+            PlayerHide hideScript = Player.GetComponent<PlayerHide>();
+            if (hideScript != null && !hideScript.isHiding)
+            {
+                Player.GetComponent<HealthManager>()?.TakeDamage(damage);
+            }
+            else
+            {
+                Debug.Log("Player is hiding – no damage applied.");
+            }
         }
     }
+
 }
