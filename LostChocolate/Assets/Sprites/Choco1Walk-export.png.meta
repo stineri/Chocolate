@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Choco1Walk-export_0: -1671021458348800389
+      Choco1Walk-export_1: 7198811771662100285
+      Choco1Walk-export_2: -1204402475717216912
+      Choco1Walk-export_3: 1870925056967703123
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

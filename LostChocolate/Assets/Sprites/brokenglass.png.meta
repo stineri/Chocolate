@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      brokenglass_0: -4225291922615172041
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

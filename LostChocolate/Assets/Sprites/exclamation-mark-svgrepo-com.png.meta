@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      exclamation-mark-svgrepo-com_0: -3765173247090782841
+      exclamation-mark-svgrepo-com_1: -3465863753209207665
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

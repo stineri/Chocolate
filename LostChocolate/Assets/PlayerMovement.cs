@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
     {
        float hAxis = Input.GetAxisRaw("Horizontal");
 
-        if (isFacingRIght && hAxis < 0f || !isFacingRIght && hAxis > 0f)
+        if ((isFacingRIght && hAxis < 0f) || (!isFacingRIght && hAxis > 0f))
         {
             isFacingRIght = !isFacingRIght;
             Vector3 localScale = transform.localScale;

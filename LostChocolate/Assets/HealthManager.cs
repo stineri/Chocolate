@@ -7,9 +7,12 @@ public class HealthManager : MonoBehaviour
     public Image healthBar;        // Reference to the health bar UI Image
     public float healthAmount = 100f; // Starting health
 
+    
+
     // Start is called once before the first execution of Update
     void Start()
     {
+        
         // Ensure health is within a valid range (just in case)
         healthAmount = Mathf.Clamp(healthAmount, 0, 100);
         UpdateHealthBar();
@@ -51,11 +54,20 @@ public class HealthManager : MonoBehaviour
 
     void ShowFloatingText(float damage)
     {
-        var go = Instantiate(FloatingTextPrefab, transform.position, Quaternion.identity, transform);
+        // Instantiate the floating text at the player's position without a parent
+        var go = Instantiate(FloatingTextPrefab, transform.position, Quaternion.identity);
+
+        // Set the damage amount
         var textMesh = go.GetComponent<TextMesh>();
         textMesh.text = damage.ToString();
-        textMesh.color = new Color(1f, 0f, 0f, 1f); // Set text color to red for damage indication
+        textMesh.color = new Color(1f, 0f, 0f, 1f); // Red color for damage indication
+        textMesh.fontSize = 18;
+
+        // Add the FloatingText script and set the target to the player
+        var floatingText = go.GetComponent<FloatingText>();
+        floatingText.Target = transform;
     }
+
 
     public void Heal(float healingAmount)
     {
