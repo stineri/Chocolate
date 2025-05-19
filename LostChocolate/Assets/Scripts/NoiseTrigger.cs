@@ -1,27 +1,15 @@
 using UnityEngine;
 
-public class NoiseTrigger : MonoBehaviour
+public class CanTrigger : MonoBehaviour
 {
-    [Tooltip("Optional: Assign the enemy manually to avoid FindWithTag.")]
-    public EnemyAI enemyAI;
+    public enemyPatrol enemy; // Drag the enemy with the script into the Inspector
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Optional: filter who can trigger this
         if (other.CompareTag("Player"))
         {
-            if (enemyAI == null)
-            {
-                GameObject enemy = GameObject.FindWithTag("Enemy"); // fallback
-                if (enemy != null)
-                {
-                    enemyAI = enemy.GetComponent<EnemyAI>();
-                }
-            }
-
-            if (enemyAI != null)
-            {
-                enemyAI.InvestigateSound(transform.position);
-            }
+            enemy.GoToCan(transform.position);
         }
     }
 }
