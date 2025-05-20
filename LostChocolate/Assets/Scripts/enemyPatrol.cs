@@ -8,6 +8,7 @@ public class enemyPatrol : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private Transform currPoint;
+    private Transform lastCurrPoint; // Stores previous patrol direction
     public float speed;
 
     private bool isPaused = false;
@@ -21,7 +22,6 @@ public class enemyPatrol : MonoBehaviour
         anim = GetComponent<Animator>();
         currPoint = PointB.transform;
         anim.SetBool("isRunning", true);
-
         originalScale = transform.localScale;
     }
 
@@ -41,10 +41,9 @@ public class enemyPatrol : MonoBehaviour
             SetFacingDirection((direction.x >= 0) ? 1 : -1);
 
             float dist = Vector2.Distance(transform.position, canPosition);
-
             Debug.Log("Distance to can: " + dist);
 
-            if (dist <= 1.5f)
+            if (dist <= 1.3f)
             {
                 rb.linearVelocity = Vector2.zero;
                 isGoingToCan = false;
@@ -53,7 +52,6 @@ public class enemyPatrol : MonoBehaviour
             }
             return;
         }
-
 
         // Regular patrol movement
         Vector2 patrolDirection;
@@ -94,6 +92,9 @@ public class enemyPatrol : MonoBehaviour
         anim.SetBool("isRunning", false);
         rb.linearVelocity = Vector2.zero;
 
+        // Save current patrol direction
+        lastCurrPoint = currPoint;
+
         yield return new WaitForSeconds(3f);
 
         int faceDir = (targetPosition.x >= transform.position.x) ? 1 : -1;
@@ -113,7 +114,7 @@ public class enemyPatrol : MonoBehaviour
 
         int currentDir = (transform.localScale.x > 0) ? 1 : -1;
 
-        // Look to other side
+        // Look to the other side
         SetFacingDirection(-currentDir);
         yield return new WaitForSeconds(3f);
 
@@ -123,11 +124,10 @@ public class enemyPatrol : MonoBehaviour
 
         anim.SetBool("isRunning", true);
         isPaused = false;
+        isGoingToCan = false;
 
-        // Set the next patrol point
-        float distA = Vector2.Distance(transform.position, PointA.transform.position);
-        float distB = Vector2.Distance(transform.position, PointB.transform.position);
-        currPoint = (distA < distB) ? PointA.transform : PointB.transform;
+        // Resume previous patrol direction
+        currPoint = lastCurrPoint;
 
         Debug.Log("Enemy resumes patrolling towards: " + currPoint.name);
     }

@@ -5,16 +5,17 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5f;
     public float runSpeed = 10f;
     public float crouchSpeed = 2f;
-    public float jumpForce = 10f; // Adjusted to fit typical Rigidbody2D scale
+    public float jumpForce = 10f;
 
     private Rigidbody2D rb;
     private bool grounded = false;
 
     private bool isStunned = false;
     private float stunTimer = 0f;
-    private bool isFacingRIght = true;
+    private bool isFacingRight = true;
 
     [SerializeField] private Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -60,14 +61,8 @@ public class PlayerMovement : MonoBehaviour
             grounded = false; // Assume we're jumping
         }
 
-        if (hAxis != 0 )
-        {
-            animator.SetBool("isRunning", true);
-        } else
-        {
-            animator.SetBool("isRunning", false);
-
-        }
+        // Update animator
+        animator.SetBool("isRunning", hAxis != 0);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -75,8 +70,8 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             grounded = true;
+            Debug.Log("Player is grounded.");
         }
-
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -84,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             grounded = false;
+            Debug.Log("Player is no longer grounded.");
         }
     }
 
@@ -97,11 +93,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void flip()
     {
-       float hAxis = Input.GetAxisRaw("Horizontal");
+        float hAxis = Input.GetAxisRaw("Horizontal");
 
-        if ((isFacingRIght && hAxis < 0f) || (!isFacingRIght && hAxis > 0f))
+        if ((isFacingRight && hAxis < 0f) || (!isFacingRight && hAxis > 0f))
         {
-            isFacingRIght = !isFacingRIght;
+            isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;

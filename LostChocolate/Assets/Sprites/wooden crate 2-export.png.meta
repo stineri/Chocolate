@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 2a0ff3a5866549e43b17363552ed2dff
+guid: b9818b311c1fbd14897f6f2ccf11a047
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8442441857227479472
-    second: trash can neutral_0
+      213: -7662795712841696586
+    second: wooden crate 2-export_0
+  - first:
+      213: -266779505985957403
+    second: wooden crate 2-export_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: trash can neutral_0
+      name: wooden crate 2-export_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 0
-        width: 282
-        height: 320
+        x: 79
+        y: 79
+        width: 322
+        height: 322
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0b9dee0a324992570800000000000000
-      internalID: 8442441857227479472
+      spriteID: 6ba3fadf5e748a590800000000000000
+      internalID: -7662795712841696586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wooden crate 2-export_1
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 69
+        width: 342
+        height: 342
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e15a58e3753c4cf0800000000000000
+      internalID: -266779505985957403
       vertices: []
       indices: 
       edges: []
@@ -147,8 +172,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      trash can neutral_0: 8442441857227479472
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
