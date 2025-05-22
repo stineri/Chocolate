@@ -14,45 +14,35 @@ public class PlayerMovement : MonoBehaviour
     private float stunTimer = 0f;
     private bool isFacingRight = true;
 
-    public Collider2D normalCollider;
-    public Collider2D stunCollider;
+    public Collider2D normalCollider; // Assign manually in Inspector
+    public Collider2D stunCollider;   // Assign manually in Inspector
 
     [SerializeField] private Animator animator;
+
+    // Optional: smooth deceleration while stunned
+    private float smoothStopSpeed = 10f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Collider2D[] colliders = GetComponents<Collider2D>();
-        normalCollider = colliders[0];
-        stunCollider = colliders[1];
 
         EnableNormalCollider(); // Start with normal collider active
     }
 
     void Update()
     {
-        // Handle stun logic
         if (isStunned)
         {
-            stunTimer -= Time.deltaTime;
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y); // Stop horizontal movement, allow falling
-
-            animator.SetBool("isStunned", true);
-
-            if (stunTimer <= 0f)
-            {
-                isStunned = false;
-                animator.SetBool("isStunned", false);
-                EnableNormalCollider(); // Switch back to normal collider when stun ends
-            }
-
+            HandleStun();
             return;
         }
 
-        float hAxis = Input.GetAxis("Horizontal");
-        flip();
+        EnableNormalCollider(); // Ensure normalCollider is used while not stunned
 
-        // Handle movement
+        float hAxis = Input.GetAxis("Horizontal");
+        Flip(hAxis);
+
+        // Movement
         if (Input.GetKey(KeyCode.LeftControl))
         {
             rb.linearVelocity = new Vector2(hAxis * crouchSpeed, rb.linearVelocity.y);
@@ -66,26 +56,54 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(hAxis * speed, rb.linearVelocity.y);
         }
 
-        // Handle jump
+        // Jump
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             grounded = false;
         }
 
+        // Animation
         animator.SetBool("isRunning", hAxis != 0);
+    }
+
+    private void HandleStun()
+    {
+        stunTimer -= Time.deltaTime;
+
+        // Smoothly stop horizontal movement
+        float smoothedX = Mathf.Lerp(rb.linearVelocity.x, 0f, Time.deltaTime * smoothStopSpeed);
+        rb.linearVelocity = new Vector2(smoothedX, rb.linearVelocity.y);
+
+        animator.SetBool("isStunned", true);
+
+        if (stunTimer <= 0f)
+        {
+            isStunned = false;
+            animator.SetBool("isStunned", false);
+            EnableNormalCollider();
+            Debug.Log("Stun ended — switched to normal collider.");
+        }
     }
 
     public void EnableStunCollider()
     {
-        normalCollider.enabled = false;
-        stunCollider.enabled = true;
+        if (normalCollider != null && stunCollider != null)
+        {
+            normalCollider.enabled = false;
+            stunCollider.enabled = true;
+            Debug.Log("Switched to Stun Collider");
+        }
     }
 
     public void EnableNormalCollider()
     {
-        stunCollider.enabled = false;
-        normalCollider.enabled = true;
+        if (normalCollider != null && stunCollider != null)
+        {
+            stunCollider.enabled = false;
+            normalCollider.enabled = true;
+            Debug.Log("Switched to Normal Collider");
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -108,6 +126,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Stun(float duration)
     {
+        if (isStunned) return;  // Ignore if already stunned
+
         Debug.Log("Player got stunned!");
         isStunned = true;
         stunTimer = duration;
@@ -116,11 +136,10 @@ public class PlayerMovement : MonoBehaviour
         EnableStunCollider(); // Switch to stun collider
     }
 
-    private void flip()
-    {
-        float hAxis = Input.GetAxisRaw("Horizontal");
 
-        if ((isFacingRight && hAxis < 0f) || (!isFacingRight && hAxis > 0f))
+    private void Flip(float horizontal)
+    {
+        if ((isFacingRight && horizontal < 0f) || (!isFacingRight && horizontal > 0f))
         {
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;

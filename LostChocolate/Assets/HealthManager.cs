@@ -52,6 +52,7 @@ public class HealthManager : MonoBehaviour
            
     }
 
+
     void ShowFloatingText(float damage)
     {
         // Instantiate the floating text at the player's position without a parent
