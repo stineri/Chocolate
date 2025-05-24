@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: d97f3e134b86d0a42a2a213873904db5
+guid: ba1e58886b4c8e249b00cdcf4439509a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7017912798624099036
-    second: ChocoJump_0
+      213: -7631181022807244462
+    second: ChocoJump-export_0
   - first:
-      213: -1452901080645952546
-    second: ChocoJump_1
+      213: 8401843953089264378
+    second: ChocoJump-export_1
   - first:
-      213: 4261710484618571188
-    second: ChocoJump_2
+      213: -6488427806075472314
+    second: ChocoJump-export_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -119,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChocoJump_0
+      name: ChocoJump-export_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 7
-        width: 31
-        height: 29
+        x: 99
+        y: 79
+        width: 292
+        height: 272
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,20 +134,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 425d75dfd7d5b9e90800000000000000
-      internalID: -7017912798624099036
+      spriteID: 2514fde9a49981690800000000000000
+      internalID: -7631181022807244462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChocoJump_1
+      name: ChocoJump-export_1
       rect:
         serializedVersion: 2
-        x: 54
-        y: 8
-        width: 35
-        height: 30
+        x: 549
+        y: 89
+        width: 332
+        height: 282
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: edb115a3a2246dbe0800000000000000
-      internalID: -1452901080645952546
+      spriteID: afa362a7f88599470800000000000000
+      internalID: 8401843953089264378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ChocoJump_2
+      name: ChocoJump-export_2
       rect:
         serializedVersion: 2
-        x: 103
-        y: 7
-        width: 36
-        height: 33
+        x: 1039
+        y: 79
+        width: 342
+        height: 312
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,8 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4bd6f333b13a42b30800000000000000
-      internalID: 4261710484618571188
+      spriteID: 646ba1c994974f5a0800000000000000
+      internalID: -6488427806075472314
       vertices: []
       indices: 
       edges: []

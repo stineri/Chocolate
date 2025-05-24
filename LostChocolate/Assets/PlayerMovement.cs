@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
         EnableNormalCollider(); // Start with normal collider active
     }
 
@@ -61,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             grounded = false;
+            animator.SetBool("IsJumping", hAxis != 0); // Set jump animation
         }
 
         // Animation
@@ -111,6 +111,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             grounded = true;
+            animator.SetBool("IsJumping", false); // Reset jump animation
             Debug.Log("Player is grounded.");
         }
     }
@@ -135,7 +136,6 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isStunned", true);
         EnableStunCollider(); // Switch to stun collider
     }
-
 
     private void Flip(float horizontal)
     {
