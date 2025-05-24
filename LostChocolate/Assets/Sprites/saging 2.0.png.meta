@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      saging 2.0_0: -8753646919536216644
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

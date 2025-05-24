@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      trash can glow-export_0: 6045095287850243330
+      trash can glow-export_1: 4240474706521220376
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

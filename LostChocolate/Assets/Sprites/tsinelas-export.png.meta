@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tsinelas-export_0: -4788352591351249261
+      tsinelas-export_1: -1334275677667058589
+      tsinelas-export_2: -1550766123192011632
+      tsinelas-export_3: -7732024414265561281
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
