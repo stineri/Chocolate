@@ -1714,6 +1714,7 @@ GameObject:
   - component: {fileID: 1178274091}
   - component: {fileID: 1178274090}
   - component: {fileID: 1178274089}
+  - component: {fileID: 1178274092}
   m_Layer: 0
   m_Name: mang luis
   m_TagString: Untagged
@@ -1837,6 +1838,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1178274092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178274088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8997a25575d8bbf4fa6e1f338dbf6290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueData: {fileID: 0}
+  dialoguePanel: {fileID: 0}
+  dialogueText: {fileID: 0}
+  nameText: {fileID: 0}
+  portraitImage: {fileID: 0}
 --- !u!1 &1299603844
 GameObject:
   m_ObjectHideFlags: 0
