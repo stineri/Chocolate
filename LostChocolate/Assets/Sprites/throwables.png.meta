@@ -372,7 +372,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      throwables_0: 4466208536440602503
+      throwables_1: 3207887919161230371
+      throwables_2: -4081037419412427866
+      throwables_3: 2942694278743524749
+      throwables_4: -6884198093625802859
+      throwables_5: 6119953982558489135
+      throwables_6: -8476625556664861637
+      throwables_7: -1459699793385029329
+      throwables_8: 1940319677612049436
+      throwables_9: -6774221204863190332
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

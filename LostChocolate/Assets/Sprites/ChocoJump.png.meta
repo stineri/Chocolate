@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ChocoJump_0: -7017912798624099036
+      ChocoJump_1: -1452901080645952546
+      ChocoJump_2: 4261710484618571188
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
