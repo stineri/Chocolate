@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ChocoStunnedv2-export_0: -8981534265493623496
+      ChocoStunnedv2-export_1: 5552905847100743087
+      ChocoStunnedv2-export_2: 2341687206445220460
+      ChocoStunnedv2-export_3: -8134798097820773290
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
