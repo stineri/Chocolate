@@ -1,92 +1,94 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class HealthManager : MonoBehaviour
 {
     public GameObject FloatingTextPrefab;
-    public Image healthBar;        // Reference to the health bar UI Image
-    public float healthAmount = 100f; // Starting health
+    public Image healthBar;
+    public float healthAmount = 100f;
 
-    
+    public Animator animator;                // Assign your Animator here in Inspector
+    public float damageAnimDuration = 5f; // Duration of damage animation
+    public float invincibilityDuration = 2f; // Player invincible for 2 seconds
 
-    // Start is called once before the first execution of Update
+    private bool isInvincible = false;
+
     void Start()
     {
-        
-        // Ensure health is within a valid range (just in case)
         healthAmount = Mathf.Clamp(healthAmount, 0, 100);
         UpdateHealthBar();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // Your continuous update logic goes here, if needed
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
-        // When the player is hit by the stick
-        if (other.CompareTag("Stick"))
+        if (other.CompareTag("Stick") && !isInvincible)
         {
-            // Apply damage
             TakeDamage(10);
-            // Destroy the stick
             Destroy(other.gameObject);
+            PlayDamageAnimation();
         }
     }
 
     public void TakeDamage(float damage)
     {
+        if (isInvincible) return; // Safety check
+
         healthAmount -= damage;
         healthAmount = Mathf.Clamp(healthAmount, 0, 100);
-        Debug.Log("Health after damage: " + healthAmount); // Debug log for health value
+        Debug.Log("Health after damage: " + healthAmount);
         UpdateHealthBar();
 
-        if (FloatingTextPrefab && healthAmount != 0)
+        if (FloatingTextPrefab && healthAmount > 0)
         {
-
             ShowFloatingText(damage);
         }
 
-           
+        if (animator != null)
+        {
+            StartCoroutine(PlayDamageAnimation());
+        }
+
+        StartCoroutine(InvincibilityFrames());
     }
 
+    private IEnumerator PlayDamageAnimation()
+    {
+        animator.SetBool("isDamaged", true);
+        yield return new WaitForSeconds(damageAnimDuration);
+        animator.SetBool("isDamaged", false);
+    }
+
+    private IEnumerator InvincibilityFrames()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibilityDuration);
+        isInvincible = false;
+    }
 
     void ShowFloatingText(float damage)
     {
-        // Instantiate the floating text at the player's position without a parent
         var go = Instantiate(FloatingTextPrefab, transform.position, Quaternion.identity);
-
-        // Set the damage amount
         var textMesh = go.GetComponent<TextMesh>();
         textMesh.text = damage.ToString();
-        textMesh.color = new Color(1f, 0f, 0f, 1f); // Red color for damage indication
+        textMesh.color = new Color(1f, 0f, 0f, 1f);
         textMesh.fontSize = 18;
 
-        // Add the FloatingText script and set the target to the player
         var floatingText = go.GetComponent<FloatingText>();
         floatingText.Target = transform;
     }
 
-
     public void Heal(float healingAmount)
     {
         healthAmount += healingAmount;
-
-        // Ensure health doesn't go above 100
         healthAmount = Mathf.Clamp(healthAmount, 0, 100);
-
-        // Update the health bar
         UpdateHealthBar();
     }
 
-    // Helper function to update the health bar fill
     private void UpdateHealthBar()
     {
         if (healthBar != null)
         {
-            // Update the fill amount based on health percentage
             healthBar.fillAmount = healthAmount / 100f;
         }
     }
