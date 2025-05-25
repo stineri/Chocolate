@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8810000dfa91e8241af404ab3285ddf1
+guid: 39f91b3cb3151304f94439fa3dbdef16
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5234792136038622671
-    second: chainFence-export_0
+      213: 4439561425592545017
+    second: waterPuddle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,9 +40,9 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chainFence-export_0
+      name: waterPuddle_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 30720
-        height: 10240
+        x: 9
+        y: 59
+        width: 452
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 13ad86299484a57b0800000000000000
-      internalID: -5234792136038622671
+      spriteID: 9fe68f2489d7c9d30800000000000000
+      internalID: 4439561425592545017
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      chainFence-export_0: -5234792136038622671
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
