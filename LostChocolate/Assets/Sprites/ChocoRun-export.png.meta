@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ChocoRun-export_0: 8161020010950770143
+      ChocoRun-export_1: 3186564277053489683
+      ChocoRun-export_2: -6890199485619484693
+      ChocoRun-export_3: -5417862676137234068
+      ChocoRun-export_4: 1908709401451796114
+      ChocoRun-export_5: 8373212567733164785
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

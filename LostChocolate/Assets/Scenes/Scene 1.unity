@@ -3579,6 +3579,7 @@ MonoBehaviour:
   jumpForce: 13
   normalCollider: {fileID: 2091926633}
   stunCollider: {fileID: 2091926635}
+  crouchCollider: {fileID: 2091926635}
   animator: {fileID: 2091926634}
 --- !u!50 &2091926630
 Rigidbody2D:

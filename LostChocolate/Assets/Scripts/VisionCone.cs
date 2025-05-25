@@ -45,23 +45,13 @@ public class VisionCone : MonoBehaviour
 
                 if (animator != null)
                 {
-                    animator.SetBool("isDamaged", true);
-                    StartCoroutine(ResetIsDamaged(animator, 0.1f)); // Reset the flag after a short delay
+                    animator.SetTrigger("isDamaged"); // Use Trigger instead of bool
                 }
             }
             else
             {
                 Debug.Log("Player is hiding – no damage applied.");
             }
-        }
-    }
-
-    private IEnumerator ResetIsDamaged(Animator animator, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        if (animator != null)
-        {
-            animator.SetBool("isDamaged", false);
         }
     }
 }

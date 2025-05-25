@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ChocoCrouch-export_0: -547034295639121285
+      ChocoCrouch-export_1: 7097415347945976037
+      ChocoCrouch-export_2: -1576069163441791288
+      ChocoCrouch-export_3: 367845399877574513
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

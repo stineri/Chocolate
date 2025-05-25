@@ -80,6 +80,11 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsJumping", false);
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            GetComponent<Animator>().SetTrigger("isDamaged");
+        }
     }
 
     private void HandleStun()
@@ -174,3 +179,5 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
+
+
