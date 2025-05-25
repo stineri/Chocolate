@@ -1900,8 +1900,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-=======
 --- !u!82 &851303187
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2133,7 +2131,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> b93a6483f5eebf6d49cfa9adaafe63b572e5eb03
 --- !u!1 &888507477
 GameObject:
   m_ObjectHideFlags: 0
