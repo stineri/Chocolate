@@ -101,12 +101,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     public void EnableNormalCollider()
     {
         if (normalCollider && crouchCollider)
         {
             crouchCollider.enabled = false;
             normalCollider.enabled = true;
+            Debug.Log("Normal collider enabled");
         }
     }
 
@@ -116,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
         {
             normalCollider.enabled = false;
             crouchCollider.enabled = true;
+            Debug.Log("Crouch collider enabled");
         }
     }
 
@@ -149,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
         isStunned = true;
         stunTimer = duration;
         rb.linearVelocity = Vector2.zero;
-        // No need to change colliders here anymore
+       
     }
 
     private void Flip(float horizontal)
@@ -163,3 +166,4 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
+
