@@ -21,8 +21,11 @@ public class enemyPatrol : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         currPoint = PointB.transform;
-        anim.SetBool("isRunning", true);
         originalScale = transform.localScale;
+
+        // Start moving
+        anim.SetBool("isRunning", true);
+        anim.SetBool("isIdle", false);
     }
 
     void Update()
@@ -30,6 +33,8 @@ public class enemyPatrol : MonoBehaviour
         if (isPaused)
         {
             rb.linearVelocity = Vector2.zero;
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isIdle", true);
             return;
         }
 
@@ -41,15 +46,15 @@ public class enemyPatrol : MonoBehaviour
             SetFacingDirection((direction.x >= 0) ? 1 : -1);
 
             float dist = Vector2.Distance(transform.position, canPosition);
-            Debug.Log("Distance to can: " + dist);
-
             if (dist <= 1.3f)
             {
                 rb.linearVelocity = Vector2.zero;
                 isGoingToCan = false;
-                Debug.Log("Enemy reached the Can! Starting LookAroundThenResume coroutine.");
                 StartCoroutine(LookAroundThenResume());
             }
+
+            anim.SetBool("isRunning", true);
+            anim.SetBool("isIdle", false);
             return;
         }
 
@@ -72,6 +77,9 @@ public class enemyPatrol : MonoBehaviour
         {
             currPoint = (currPoint == PointB.transform) ? PointA.transform : PointB.transform;
         }
+
+        anim.SetBool("isRunning", true);
+        anim.SetBool("isIdle", false);
     }
 
     private void SetFacingDirection(int direction)
@@ -89,10 +97,10 @@ public class enemyPatrol : MonoBehaviour
     private IEnumerator PauseThenGoToCan(Vector3 targetPosition)
     {
         isPaused = true;
-        anim.SetBool("isRunning", false);
         rb.linearVelocity = Vector2.zero;
+        anim.SetBool("isRunning", false);
+        anim.SetBool("isIdle", true);
 
-        // Save current patrol direction
         lastCurrPoint = currPoint;
 
         yield return new WaitForSeconds(3f);
@@ -101,6 +109,8 @@ public class enemyPatrol : MonoBehaviour
         SetFacingDirection(faceDir);
 
         anim.SetBool("isRunning", true);
+        anim.SetBool("isIdle", false);
+
         canPosition = targetPosition;
         isPaused = false;
         isGoingToCan = true;
@@ -111,6 +121,7 @@ public class enemyPatrol : MonoBehaviour
         isPaused = true;
         rb.linearVelocity = Vector2.zero;
         anim.SetBool("isRunning", false);
+        anim.SetBool("isIdle", true);
 
         int currentDir = (transform.localScale.x > 0) ? 1 : -1;
 
@@ -123,12 +134,11 @@ public class enemyPatrol : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         anim.SetBool("isRunning", true);
+        anim.SetBool("isIdle", false);
+
         isPaused = false;
         isGoingToCan = false;
 
-        // Resume previous patrol direction
         currPoint = lastCurrPoint;
-
-        Debug.Log("Enemy resumes patrolling towards: " + currPoint.name);
     }
 }

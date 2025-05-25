@@ -9,23 +9,20 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool grounded = false;
-
     private bool isStunned = false;
     private float stunTimer = 0f;
     private bool isFacingRight = true;
 
-    public Collider2D normalCollider; // Assign manually in Inspector
-    public Collider2D stunCollider;   // Assign manually in Inspector
+    public Collider2D normalCollider;
+    public Collider2D stunCollider;
+    public Collider2D crouchCollider;
 
     [SerializeField] private Animator animator;
-
-    // Optional: smooth deceleration while stunned
-    private float smoothStopSpeed = 10f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        EnableNormalCollider(); // Start with normal collider active
+        EnableNormalCollider();
     }
 
     void Update()
@@ -36,74 +33,108 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        EnableNormalCollider(); // Ensure normalCollider is used while not stunned
+        float hAxis = Input.GetAxisRaw("Horizontal");
+        bool isMoving = hAxis != 0f;
+        bool isCrouching = Input.GetKey(KeyCode.LeftControl);
 
-        float hAxis = Input.GetAxis("Horizontal");
-        Flip(hAxis);
-
-        // Movement
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (isCrouching)
         {
-            rb.linearVelocity = new Vector2(hAxis * crouchSpeed, rb.linearVelocity.y);
-        }
-        else if (Input.GetKey(KeyCode.LeftShift))
-        {
-            rb.linearVelocity = new Vector2(hAxis * runSpeed, rb.linearVelocity.y);
+            EnableCrouchCollider();
         }
         else
         {
-            rb.linearVelocity = new Vector2(hAxis * speed, rb.linearVelocity.y);
+            EnableNormalCollider();
         }
 
-        // Jump
+        Flip(hAxis);
+
+        if (Input.GetKey(KeyCode.LeftShift) && isMoving && !isCrouching)
+        {
+            rb.linearVelocity = new Vector2(hAxis * runSpeed, rb.linearVelocity.y);
+            SetAnimState("isRunning");
+        }
+        else if (isCrouching && isMoving)
+        {
+            rb.linearVelocity = new Vector2(hAxis * crouchSpeed, rb.linearVelocity.y);
+            SetAnimState("isCrouching");
+        }
+        else if (isMoving)
+        {
+            rb.linearVelocity = new Vector2(hAxis * speed, rb.linearVelocity.y);
+            SetAnimState("IsWalking");
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            SetAnimState("isIdle");
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             grounded = false;
-            animator.SetBool("IsJumping", hAxis != 0); // Set jump animation
+            animator.SetBool("IsJumping", true);
         }
 
-        // Animation
-        animator.SetBool("isRunning", hAxis != 0);
+        if (grounded)
+        {
+            animator.SetBool("IsJumping", false);
+        }
     }
 
     private void HandleStun()
     {
         stunTimer -= Time.deltaTime;
+        rb.linearVelocity = new Vector2(Mathf.Lerp(rb.linearVelocity.x, 0f, Time.deltaTime * 10f), rb.linearVelocity.y);
 
-        // Smoothly stop horizontal movement
-        float smoothedX = Mathf.Lerp(rb.linearVelocity.x, 0f, Time.deltaTime * smoothStopSpeed);
-        rb.linearVelocity = new Vector2(smoothedX, rb.linearVelocity.y);
-
-        animator.SetBool("isStunned", true);
+        SetAnimState("isStunned");
 
         if (stunTimer <= 0f)
         {
             isStunned = false;
             animator.SetBool("isStunned", false);
             EnableNormalCollider();
-            Debug.Log("Stun ended — switched to normal collider.");
         }
     }
 
     public void EnableStunCollider()
     {
-        if (normalCollider != null && stunCollider != null)
+        if (normalCollider && crouchCollider && stunCollider)
         {
             normalCollider.enabled = false;
+            crouchCollider.enabled = false;
             stunCollider.enabled = true;
-            Debug.Log("Switched to Stun Collider");
+            Debug.Log("Stun collider enabled");
         }
     }
 
     public void EnableNormalCollider()
     {
-        if (normalCollider != null && stunCollider != null)
+        if (normalCollider && crouchCollider && stunCollider)
         {
             stunCollider.enabled = false;
+            crouchCollider.enabled = false;
             normalCollider.enabled = true;
-            Debug.Log("Switched to Normal Collider");
+            Debug.Log("Normal collider enabled");
         }
+    }
+
+    public void EnableCrouchCollider()
+    {
+        if (normalCollider && crouchCollider && stunCollider)
+        {
+            normalCollider.enabled = false;
+            stunCollider.enabled = false;
+            crouchCollider.enabled = true;
+            Debug.Log("Crouch collider enabled");
+        }
+    }
+
+    private void SetAnimState(string state)
+    {
+        string[] states = { "IsWalking", "isRunning", "isIdle", "IsJumping", "isCrouching", "isStunned" };
+        foreach (string s in states) animator.SetBool(s, false);
+        animator.SetBool(state, true);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -111,8 +142,6 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             grounded = true;
-            animator.SetBool("IsJumping", false); // Reset jump animation
-            Debug.Log("Player is grounded.");
         }
     }
 
@@ -121,20 +150,17 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             grounded = false;
-            Debug.Log("Player is no longer grounded.");
         }
     }
 
     public void Stun(float duration)
     {
-        if (isStunned) return;  // Ignore if already stunned
+        if (isStunned) return;
 
-        Debug.Log("Player got stunned!");
         isStunned = true;
         stunTimer = duration;
         rb.linearVelocity = Vector2.zero;
-        animator.SetBool("isStunned", true);
-        EnableStunCollider(); // Switch to stun collider
+        EnableStunCollider();
     }
 
     private void Flip(float horizontal)

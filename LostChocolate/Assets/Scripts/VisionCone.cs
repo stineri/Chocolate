@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class VisionCone : MonoBehaviour
 {
@@ -34,7 +35,19 @@ public class VisionCone : MonoBehaviour
             PlayerHide hideScript = Player.GetComponent<PlayerHide>();
             if (hideScript != null && !hideScript.isHiding)
             {
-                Player.GetComponent<HealthManager>()?.TakeDamage(damage);
+                HealthManager healthManager = Player.GetComponent<HealthManager>();
+                Animator animator = Player.GetComponent<Animator>();
+
+                if (healthManager != null)
+                {
+                    healthManager.TakeDamage(damage);
+                }
+
+                if (animator != null)
+                {
+                    animator.SetBool("isDamaged", true);
+                    StartCoroutine(ResetIsDamaged(animator, 0.1f)); // Reset the flag after a short delay
+                }
             }
             else
             {
@@ -43,4 +56,12 @@ public class VisionCone : MonoBehaviour
         }
     }
 
+    private IEnumerator ResetIsDamaged(Animator animator, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (animator != null)
+        {
+            animator.SetBool("isDamaged", false);
+        }
+    }
 }
