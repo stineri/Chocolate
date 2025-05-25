@@ -20,10 +20,10 @@ public class NPC1 : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (dialogueData == null || (PauseController.IsGamePaused && !isDialogueActive))
-        {
-            return;
-        }
+        //if (dialogueData == null || (PauseController.IsGamePaused && !isDialogueActive))
+        //{
+        //    return;
+        //}
 
         if (isDialogueActive)
         {
@@ -42,7 +42,7 @@ public class NPC1 : MonoBehaviour, IInteractable
         isDialogueActive = true;
         dialogueIndex = 0;
 
-        nameText.SetText(dialogueData.name);
+        nameText.SetText(dialogueData.npcName);
         portraitImage.sprite = dialogueData.npcPortrait;
 
         dialoguePanel.SetActive(true);
