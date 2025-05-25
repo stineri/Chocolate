@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: e897e779ee936f2418958b7de59e3d14
+guid: 897ef8bd84bfed54aa4a49e61ab66004
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2176464878204383778
-    second: Idle 2_0
+      213: -254162698919987900
+    second: mang luis_0
   - first:
-      213: 548687955085884545
-    second: Idle 2_1
+      213: 5237056338386486453
+    second: mang luis_1
   - first:
-      213: 1545194536753506867
-    second: Idle 2_2
+      213: 838664315497719741
+    second: mang luis_2
   - first:
-      213: -7262578471915858989
-    second: Idle 2_3
+      213: -9131259625496704649
+    second: mang luis_3
   - first:
-      213: 6807538183004641783
-    second: Idle 2_4
+      213: -8568951312611916239
+    second: mang luis_4
   - first:
-      213: 3776588358548848070
-    second: Idle 2_5
+      213: -6365147955379544799
+    second: mang luis_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -111,95 +111,16 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle 2_0
+      name: mang luis_0
       rect:
         serializedVersion: 2
-        x: 44
+        x: 53
         y: 0
-        width: 33
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: edd838489b4abc1e0800000000000000
-      internalID: -2176464878204383778
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle 2_1
-      rect:
-        serializedVersion: 2
-        x: 172
-        y: 0
-        width: 33
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 18cfd6fb9c45d9700800000000000000
-      internalID: 548687955085884545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle 2_2
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 0
-        width: 33
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33a21109e32a17510800000000000000
-      internalID: 1545194536753506867
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle 2_3
-      rect:
-        serializedVersion: 2
-        x: 428
-        y: 0
-        width: 33
+        width: 30
         height: 67
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -209,19 +130,63 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3d35e0ccb53263b90800000000000000
-      internalID: -7262578471915858989
+      spriteID: 44538b73f58097cf0800000000000000
+      internalID: -254162698919987900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle 2_4
+      name: mang luis_1
       rect:
         serializedVersion: 2
-        x: 556
+        x: 180
         y: 0
-        width: 33
+        width: 30
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b40c3e1ef2cda840800000000000000
+      internalID: 5237056338386486453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mang luis_2
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 0
+        width: 30
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db7a90360c883ab00800000000000000
+      internalID: 838664315497719741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mang luis_3
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 0
+        width: 30
         height: 67
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -231,20 +196,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7f956e8d8eb397e50800000000000000
-      internalID: 6807538183004641783
+      spriteID: 779076600cf374180800000000000000
+      internalID: -9131259625496704649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle 2_5
+      name: mang luis_4
       rect:
         serializedVersion: 2
-        x: 684
+        x: 565
         y: 0
-        width: 33
-        height: 66
+        width: 30
+        height: 67
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,8 +218,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6cdfd265a13296430800000000000000
-      internalID: 3776588358548848070
+      spriteID: 13646227e28f41980800000000000000
+      internalID: -8568951312611916239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mang luis_5
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 0
+        width: 30
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12d5cc898a37aa7a0800000000000000
+      internalID: -6365147955379544799
       vertices: []
       indices: 
       edges: []
@@ -272,13 +259,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Idle 2_0: -2176464878204383778
-      Idle 2_1: 548687955085884545
-      Idle 2_2: 1545194536753506867
-      Idle 2_3: -7262578471915858989
-      Idle 2_4: 6807538183004641783
-      Idle 2_5: 3776588358548848070
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

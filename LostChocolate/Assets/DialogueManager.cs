@@ -7,7 +7,8 @@ public class DialogueManager : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
     public GameObject dialoguePanel;
-    public AudioSource audioSource; // Add this in Unity Inspector
+    public GameObject choicesPanel;
+    public Button[] choiceButtons;
 
     private Queue<DialogueLine> dialogueLines = new Queue<DialogueLine>();
     private bool isDialogueActive = false;
@@ -23,15 +24,13 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(List<DialogueLine> lines)
     {
         dialogueLines.Clear();
-
-        foreach (DialogueLine line in lines)
+        foreach (var line in lines)
         {
             dialogueLines.Enqueue(line);
         }
 
         dialoguePanel.SetActive(true);
         isDialogueActive = true;
-
         ShowNextLine();
     }
 
@@ -47,23 +46,50 @@ public class DialogueManager : MonoBehaviour
         nameText.text = line.speakerName;
         dialogueText.text = line.text;
 
-        // Play voice if available
         if (line.voiceClip != null)
         {
-            audioSource.Stop(); // Optional: stop current audio before playing next
-            audioSource.clip = line.voiceClip;
-            audioSource.Play();
+            GetComponent<AudioSource>().PlayOneShot(line.voiceClip);
         }
-        else
+
+        // If this line has choices, stop automatic flow
+        if (line.choices != null && line.choices.Count > 0)
         {
-            audioSource.Stop(); // Stop audio if no voice for this line
+            ShowChoices(line.choices);
+        }
+    }
+
+    public void ShowChoices(List<DialogueChoice> choices)
+    {
+        isDialogueActive = false;
+        choicesPanel.SetActive(true);
+
+        for (int i = 0; i < choiceButtons.Length; i++)
+        {
+            if (i < choices.Count)
+            {
+                choiceButtons[i].gameObject.SetActive(true);
+                choiceButtons[i].GetComponentInChildren<Text>().text = choices[i].choiceText;
+
+                int choiceIndex = i; // Needed to avoid closure issue
+                choiceButtons[i].onClick.RemoveAllListeners();
+                choiceButtons[i].onClick.AddListener(() =>
+                {
+                    choicesPanel.SetActive(false);
+                    choices[choiceIndex].onChoose.Invoke();
+                    isDialogueActive = true;
+                });
+            }
+            else
+            {
+                choiceButtons[i].gameObject.SetActive(false);
+            }
         }
     }
 
     public void EndDialogue()
     {
         dialoguePanel.SetActive(false);
+        choicesPanel.SetActive(false);
         isDialogueActive = false;
-        audioSource.Stop();
     }
 }
