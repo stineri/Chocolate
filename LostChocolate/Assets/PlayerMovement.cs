@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight = true;
 
     public Collider2D normalCollider;
+    public Collider2D stunCollider;
     public Collider2D crouchCollider;
 
     [SerializeField] private Animator animator;
@@ -80,11 +82,10 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsJumping", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            GetComponent<Animator>().SetTrigger("isDamaged");
-        }
+       
     }
+
+
 
     private void HandleStun()
     {
@@ -101,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+ 
 
     public void EnableNormalCollider()
     {
@@ -114,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void EnableCrouchCollider()
     {
-        if (normalCollider && crouchCollider)
+        if (normalCollider && crouchCollider )
         {
             normalCollider.enabled = false;
             crouchCollider.enabled = true;
@@ -152,7 +154,6 @@ public class PlayerMovement : MonoBehaviour
         isStunned = true;
         stunTimer = duration;
         rb.linearVelocity = Vector2.zero;
-       
     }
 
     private void Flip(float horizontal)
@@ -166,4 +167,3 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
-

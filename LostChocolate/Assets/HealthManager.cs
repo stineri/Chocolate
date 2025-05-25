@@ -32,6 +32,7 @@ public class HealthManager : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        animator.SetTrigger("TakeDamage");
         if (isInvincible) return; // Safety check
 
         healthAmount -= damage;
