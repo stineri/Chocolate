@@ -4123,7 +4123,11 @@ MonoBehaviour:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   crouchCollider: {fileID: 2091926635}
+=======
+  crouchCollider: {fileID: 0}
+>>>>>>> Stashed changes
 =======
   crouchCollider: {fileID: 0}
 >>>>>>> Stashed changes
