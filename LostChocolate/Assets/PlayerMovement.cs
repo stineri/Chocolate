@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsJumping", false);
         }
 
-       
+
     }
 
 
@@ -102,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
- 
+
 
     public void EnableNormalCollider()
     {
@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void EnableCrouchCollider()
     {
-        if (normalCollider && crouchCollider )
+        if (normalCollider && crouchCollider)
         {
             normalCollider.enabled = false;
             crouchCollider.enabled = true;
@@ -139,6 +139,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("StunObject"))
+        {
+            Stun(2f); // Stun for 2 seconds
+        }
+    }
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
