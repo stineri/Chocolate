@@ -545,6 +545,7 @@ GameObject:
   - component: {fileID: 211055552}
   - component: {fileID: 211055551}
   - component: {fileID: 211055550}
+  - component: {fileID: 211055553}
   m_Layer: 0
   m_Name: mang luis
   m_TagString: Player
@@ -668,6 +669,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &211055553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211055549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c165e3c4282834fa89d9df957f8490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 769682865}
+  voice2Clip1: {fileID: 0}
+  voice2Clip2: {fileID: 0}
+  voice2Clip3: {fileID: 0}
+  speakerName: 
+  dialogueText: 
 --- !u!1 &240082396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2568,8 +2587,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 32.677, y: 114.554}
-  m_SizeDelta: {x: -648.086, y: -829.351}
+  m_AnchoredPosition: {x: 32.677, y: 111.818}
+  m_SizeDelta: {x: -648.086, y: -1201.497}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1736116484
 MonoBehaviour:
