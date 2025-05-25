@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight = true;
 
     public Collider2D normalCollider;
-    public Collider2D stunCollider;
     public Collider2D crouchCollider;
 
     [SerializeField] private Animator animator;
@@ -102,36 +101,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void EnableStunCollider()
-    {
-        if (normalCollider && crouchCollider && stunCollider)
-        {
-            normalCollider.enabled = false;
-            crouchCollider.enabled = false;
-            stunCollider.enabled = true;
-            Debug.Log("Stun collider enabled");
-        }
-    }
-
     public void EnableNormalCollider()
     {
-        if (normalCollider && crouchCollider && stunCollider)
+        if (normalCollider && crouchCollider)
         {
-            stunCollider.enabled = false;
             crouchCollider.enabled = false;
             normalCollider.enabled = true;
-            Debug.Log("Normal collider enabled");
         }
     }
 
     public void EnableCrouchCollider()
     {
-        if (normalCollider && crouchCollider && stunCollider)
+        if (normalCollider && crouchCollider)
         {
             normalCollider.enabled = false;
-            stunCollider.enabled = false;
             crouchCollider.enabled = true;
-            Debug.Log("Crouch collider enabled");
         }
     }
 
@@ -165,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
         isStunned = true;
         stunTimer = duration;
         rb.linearVelocity = Vector2.zero;
-        EnableStunCollider();
+        // No need to change colliders here anymore
     }
 
     private void Flip(float horizontal)
@@ -179,5 +163,3 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
-
-
