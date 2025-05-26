@@ -3049,7 +3049,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 5cfb6053aa1c64549bea6f25bf977a22, type: 3}
   m_Resource: {fileID: 8300000, guid: 5cfb6053aa1c64549bea6f25bf977a22, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.842
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4585,8 +4585,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 97c57ec65e147904c939f18976170e3a, type: 3}
+  m_Resource: {fileID: 8300000, guid: 97c57ec65e147904c939f18976170e3a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -6808,7 +6808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 1314838315}
-  line1Clip2: {fileID: 0}
+  line1Clip2: {fileID: 8300000, guid: e2281d6c1bb845a498604b9468654271, type: 3}
 --- !u!1 &1969259228
 GameObject:
   m_ObjectHideFlags: 0
@@ -6837,8 +6837,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 97c57ec65e147904c939f18976170e3a, type: 3}
+  m_Resource: {fileID: 8300000, guid: 97c57ec65e147904c939f18976170e3a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
