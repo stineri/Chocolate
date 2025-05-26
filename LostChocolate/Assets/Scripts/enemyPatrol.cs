@@ -8,13 +8,16 @@ public class enemyPatrol : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private Transform currPoint;
-    private Transform lastCurrPoint; // Stores previous patrol direction
+    private Transform lastCurrPoint;
     public float speed;
 
     private bool isPaused = false;
     private bool isGoingToCan = false;
     private Vector3 canPosition;
     private Vector3 originalScale;
+
+    [Header("Alert Sign")]
+    public GameObject exclamationMark;  // ← NEW: Exclamation mark reference
 
     void Start()
     {
@@ -23,7 +26,9 @@ public class enemyPatrol : MonoBehaviour
         currPoint = PointB.transform;
         originalScale = transform.localScale;
 
-        // Start moving
+        if (exclamationMark != null)
+            exclamationMark.SetActive(false);  // Ensure hidden at start
+
         anim.SetBool("isRunning", true);
         anim.SetBool("isIdle", false);
     }
@@ -50,6 +55,10 @@ public class enemyPatrol : MonoBehaviour
             {
                 rb.linearVelocity = Vector2.zero;
                 isGoingToCan = false;
+
+                if (exclamationMark != null)
+                    exclamationMark.SetActive(false);  // ← Hide after arriving
+
                 StartCoroutine(LookAroundThenResume());
             }
 
@@ -103,6 +112,9 @@ public class enemyPatrol : MonoBehaviour
 
         lastCurrPoint = currPoint;
 
+        if (exclamationMark != null)
+            exclamationMark.SetActive(true);  // ← Show exclamation when alerted
+
         yield return new WaitForSeconds(3f);
 
         int faceDir = (targetPosition.x >= transform.position.x) ? 1 : -1;
@@ -125,11 +137,9 @@ public class enemyPatrol : MonoBehaviour
 
         int currentDir = (transform.localScale.x > 0) ? 1 : -1;
 
-        // Look to the other side
         SetFacingDirection(-currentDir);
         yield return new WaitForSeconds(3f);
 
-        // Look back
         SetFacingDirection(currentDir);
         yield return new WaitForSeconds(3f);
 
@@ -141,9 +151,9 @@ public class enemyPatrol : MonoBehaviour
 
         currPoint = lastCurrPoint;
     }
+
     public float DistanceToPlayer(Vector3 playerPosition)
     {
         return Vector2.Distance(transform.position, playerPosition);
     }
-
 }
