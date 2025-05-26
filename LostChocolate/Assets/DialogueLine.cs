@@ -8,14 +8,14 @@ public class DialogueLine
     public string text;
     public AudioClip voiceClip;
     public List<DialogueChoice> choices;
-    public float waitTime = 0f; // Optional delay before auto-advance
+    public float autoAdvanceDelay;
 
-    public DialogueLine(string speakerName, string text, AudioClip voiceClip = null, List<DialogueChoice> choices = null, float waitTime = 0f)
+    public DialogueLine(string name, string text, AudioClip clip = null, List<DialogueChoice> choices = null, float delay = 0f)
     {
-        this.speakerName = speakerName;
+        speakerName = name;
         this.text = text;
-        this.voiceClip = voiceClip;
+        voiceClip = clip;
         this.choices = choices;
-        this.waitTime = waitTime;
+        autoAdvanceDelay = delay;
     }
 }

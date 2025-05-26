@@ -54,7 +54,7 @@ public class TriggerDialogue : MonoBehaviour
     {
         List<DialogueLine> yesLines = new List<DialogueLine>()
         {
-            new DialogueLine("Choco (tumahol nang masaya)", "Arf arf!", voiceYes)
+            new DialogueLine("Choco", "Arf arf!", voiceYes)
             
         };
 

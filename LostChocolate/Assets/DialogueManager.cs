@@ -15,9 +15,12 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (isDialogueActive && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return)))
+        if (isDialogueActive && dialoguePanel.activeSelf && !choicesPanel.activeSelf)
         {
-            ShowNextLine();
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return))
+            {
+                ShowNextLine();
+            }
         }
     }
 
@@ -51,10 +54,16 @@ public class DialogueManager : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(line.voiceClip);
         }
 
-        // If this line has choices, stop automatic flow
         if (line.choices != null && line.choices.Count > 0)
         {
             ShowChoices(line.choices);
+            return; // Stop here for player to choose
+        }
+
+        if (line.autoAdvanceDelay > 0f)
+        {
+            isDialogueActive = false;
+            Invoke(nameof(ShowNextLine), line.autoAdvanceDelay);
         }
     }
 
@@ -70,7 +79,7 @@ public class DialogueManager : MonoBehaviour
                 choiceButtons[i].gameObject.SetActive(true);
                 choiceButtons[i].GetComponentInChildren<Text>().text = choices[i].choiceText;
 
-                int choiceIndex = i; // Needed to avoid closure issue
+                int choiceIndex = i;
                 choiceButtons[i].onClick.RemoveAllListeners();
                 choiceButtons[i].onClick.AddListener(() =>
                 {
