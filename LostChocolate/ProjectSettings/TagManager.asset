@@ -9,6 +9,7 @@ TagManager:
   - Banana
   - HidingSpot
   - Enemy
+  - StunObject
   layers:
   - Default
   - TransparentFX
