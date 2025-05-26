@@ -132,7 +132,6 @@ public class PlayerMovement : MonoBehaviour
         {
             crouchCollider.enabled = false;
             normalCollider.enabled = true;
-            Debug.Log("Normal collider enabled");
         }
     }
 
@@ -142,7 +141,6 @@ public class PlayerMovement : MonoBehaviour
         {
             normalCollider.enabled = false;
             crouchCollider.enabled = true;
-            Debug.Log("Crouch collider enabled");
         }
     }
 
