@@ -7,6 +7,8 @@ public class HealthManager : MonoBehaviour
     public GameObject FloatingTextPrefab;
     public Image healthBar;
     public float healthAmount = 100f;
+    public GameObject gameOverImage; // Assign in Inspector
+
 
     public Animator animator;                // Assign your Animator here in Inspector
     public float damageAnimDuration = 5f; // Duration of damage animation
@@ -18,6 +20,24 @@ public class HealthManager : MonoBehaviour
     {
         healthAmount = Mathf.Clamp(healthAmount, 0, 100);
         UpdateHealthBar();
+    }
+
+    void Update()
+    {
+        if (healthAmount <= 0)
+        {
+            ShowGameOver();
+        }
+    }
+
+    void ShowGameOver()
+    {
+        if (gameOverImage != null)
+        {
+            gameOverImage.SetActive(true);
+            // Optional: stop game time
+            Time.timeScale = 0f;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
