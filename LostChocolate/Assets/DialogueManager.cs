@@ -10,6 +10,9 @@ public class DialogueManager : MonoBehaviour
     public GameObject choicesPanel;
     public Button[] choiceButtons;
 
+    [Header("Player Control")]
+    public PlayerMovement playerMovement; // Add your movement script type here
+
     private Queue<DialogueLine> dialogueLines = new Queue<DialogueLine>();
     private bool isDialogueActive = false;
 
@@ -34,6 +37,10 @@ public class DialogueManager : MonoBehaviour
 
         dialoguePanel.SetActive(true);
         isDialogueActive = true;
+
+        if (playerMovement != null)
+            playerMovement.enabled = false;
+
         ShowNextLine();
     }
 
@@ -54,12 +61,14 @@ public class DialogueManager : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(line.voiceClip);
         }
 
+        // If line has choices, wait for player selection
         if (line.choices != null && line.choices.Count > 0)
         {
             ShowChoices(line.choices);
-            return; // Stop here for player to choose
+            return;
         }
 
+        // Auto-advance delay
         if (line.autoAdvanceDelay > 0f)
         {
             isDialogueActive = false;
@@ -79,7 +88,7 @@ public class DialogueManager : MonoBehaviour
                 choiceButtons[i].gameObject.SetActive(true);
                 choiceButtons[i].GetComponentInChildren<Text>().text = choices[i].choiceText;
 
-                int choiceIndex = i;
+                int choiceIndex = i; // Avoid closure bug
                 choiceButtons[i].onClick.RemoveAllListeners();
                 choiceButtons[i].onClick.AddListener(() =>
                 {
@@ -100,5 +109,8 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         choicesPanel.SetActive(false);
         isDialogueActive = false;
+
+        if (playerMovement != null)
+            playerMovement.enabled = true;
     }
 }

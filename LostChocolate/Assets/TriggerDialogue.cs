@@ -36,7 +36,7 @@ public class TriggerDialogue : MonoBehaviour
             new DialogueLine("Mang Luis", "Halika dito, ‘nak. Eto, tinapay oh. Kainin mo.", voiceBread),
             
             // Pause line - auto advances after 5 seconds
-            new DialogueLine("", "...", null, null, 5f),
+            new DialogueLine("", "...", null, null, 2f),
 
             new DialogueLine("Mang Luis", "Ang bait mo palang aso. Gusto mo bang sumama sa’kin?\nBibigyan kita ng pagkain, tahanan, at alaga.\nMalapit lang bahay ko. Ayos ba ’yon, ha?\nGusto mo bang sumama?",voiceOffer,
                 new List<DialogueChoice>()
