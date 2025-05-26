@@ -1567,9 +1567,10 @@ GameObject:
   - component: {fileID: 508608898}
   - component: {fileID: 508608897}
   - component: {fileID: 508608896}
+  - component: {fileID: 508608901}
   m_Layer: 0
   m_Name: foods_6
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1763,6 +1764,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &508608901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508608894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce80a0b0d9a6f843bba8606f261652a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 851303185}
 --- !u!1 &563781712
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,9 +2040,10 @@ GameObject:
   - component: {fileID: 662231460}
   - component: {fileID: 662231459}
   - component: {fileID: 662231458}
+  - component: {fileID: 662231463}
   m_Layer: 0
   m_Name: foods_6 (3)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2222,6 +2237,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &662231463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662231456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b82c5360af685c4bbd40947ef12d158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 851303185}
 --- !u!1 &700810713
 GameObject:
   m_ObjectHideFlags: 0
@@ -3733,9 +3761,10 @@ GameObject:
   - component: {fileID: 1094958590}
   - component: {fileID: 1094958589}
   - component: {fileID: 1094958588}
+  - component: {fileID: 1094958593}
   m_Layer: 0
   m_Name: foods_6 (2)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3929,6 +3958,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1094958593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094958586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370ed636da064a948a92f970a7530578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 851303185}
 --- !u!1 &1111958658
 GameObject:
   m_ObjectHideFlags: 0
@@ -4550,9 +4592,10 @@ GameObject:
   - component: {fileID: 1247524030}
   - component: {fileID: 1247524029}
   - component: {fileID: 1247524028}
+  - component: {fileID: 1247524033}
   m_Layer: 0
   m_Name: foods_6 (1)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4746,6 +4789,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1247524033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247524026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece36d998ea408e4ea9475d0b19b1306, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 851303185}
 --- !u!1 &1291293102
 GameObject:
   m_ObjectHideFlags: 0
