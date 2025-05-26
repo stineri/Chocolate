@@ -7,7 +7,7 @@ public class EnemyFollow : MonoBehaviour
     private Rigidbody2D rb;
 
     public float speed = 3f;
-    public float stopX = 90f;             // Stop moving at x = 90
+    public float stopX = 99f;             // Stop moving at x = 90
     public float startFollowX = 12.5f;    // Start following only after player passes this x
     public float damageRange = 6f;        // Increased range
     public float damageAmount = 10f;
