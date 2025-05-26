@@ -367,6 +367,8 @@ MonoBehaviour:
   player: {fileID: 0}
   smoothSpeed: 0.125
   offset: {x: 0, y: 0, z: 0}
+  minX: 0
+  maxX: 10
 --- !u!114 &73827463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -868,6 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3a45b443bb7194295601e31750aaa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 0}
 --- !u!4 &464842676
 Transform:
   m_ObjectHideFlags: 0
@@ -2148,6 +2151,7 @@ GameObject:
   - component: {fileID: 1919066800}
   - component: {fileID: 1919066799}
   - component: {fileID: 1919066801}
+  - component: {fileID: 1919066802}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -2197,6 +2201,19 @@ MonoBehaviour:
   settingsPanel: {fileID: 1421563988}
   volumeSlider: {fileID: 996794169}
   musicSource: {fileID: 0}
+--- !u!114 &1919066802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919066798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea78da639403e1e4f865f49ce4e750de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeSlider: {fileID: 996794169}
 --- !u!1 &2108855765
 GameObject:
   m_ObjectHideFlags: 0

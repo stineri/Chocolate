@@ -1,18 +1,23 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    private void Awake()
+    public AudioMixer audioMixer; // Optional if using Audio Mixer
+    private float currentVolume = 1f;
+
+    void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            float savedVolume = PlayerPrefs.GetFloat("Volume", 1f);
-            AudioListener.volume = savedVolume;
+            // Load volume from saved data
+            currentVolume = PlayerPrefs.GetFloat("Volume", 1f);
+            SetVolume(currentVolume);
         }
         else
         {
@@ -20,10 +25,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void SetVolume(float value)
+    public void SetVolume(float volume)
     {
-        AudioListener.volume = value;
-        PlayerPrefs.SetFloat("Volume", value);
+        currentVolume = volume;
+        AudioListener.volume = volume; // Applies globally
+        PlayerPrefs.SetFloat("Volume", volume);
         PlayerPrefs.Save();
+    }
+
+    public float GetVolume()
+    {
+        return currentVolume;
     }
 }
