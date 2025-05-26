@@ -570,6 +570,8 @@ MonoBehaviour:
   player: {fileID: 255970043}
   smoothSpeed: 0.125
   offset: {x: 0, y: 0, z: 0}
+  minX: 0
+  maxX: 148
 --- !u!1 &184773556
 GameObject:
   m_ObjectHideFlags: 0
