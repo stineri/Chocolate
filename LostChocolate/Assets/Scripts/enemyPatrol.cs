@@ -141,4 +141,9 @@ public class enemyPatrol : MonoBehaviour
 
         currPoint = lastCurrPoint;
     }
+    public float DistanceToPlayer(Vector3 playerPosition)
+    {
+        return Vector2.Distance(transform.position, playerPosition);
+    }
+
 }
