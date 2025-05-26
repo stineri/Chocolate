@@ -1063,6 +1063,7 @@ GameObject:
   - component: {fileID: 304958770}
   - component: {fileID: 304958769}
   - component: {fileID: 304958768}
+  - component: {fileID: 304958774}
   m_Layer: 0
   m_Name: foods_6 (3)
   m_TagString: Untagged
@@ -1259,6 +1260,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &304958774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304958767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2cac401bc595bb4baeb1deeb4ad40e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 769682865}
 --- !u!1 &397985238
 GameObject:
   m_ObjectHideFlags: 0
@@ -3760,9 +3774,10 @@ GameObject:
   - component: {fileID: 1557710622}
   - component: {fileID: 1557710621}
   - component: {fileID: 1557710620}
+  - component: {fileID: 1557710623}
   m_Layer: 0
   m_Name: foods_6
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3956,6 +3971,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   height: 0.5
+--- !u!114 &1557710623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557710616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b035bd6c559dce94d94c4b39282f1af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 769682865}
 --- !u!1 &1561829796
 GameObject:
   m_ObjectHideFlags: 0
@@ -4195,6 +4223,7 @@ GameObject:
   - component: {fileID: 1647580754}
   - component: {fileID: 1647580753}
   - component: {fileID: 1647580752}
+  - component: {fileID: 1647580758}
   m_Layer: 0
   m_Name: foods_6 (1)
   m_TagString: Untagged
@@ -4391,6 +4420,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1647580758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647580751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37632c0b5449b1241b37852c23e8b0f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 769682865}
 --- !u!1 &1670887280
 GameObject:
   m_ObjectHideFlags: 0
@@ -4491,6 +4533,7 @@ GameObject:
   - component: {fileID: 1701390305}
   - component: {fileID: 1701390304}
   - component: {fileID: 1701390303}
+  - component: {fileID: 1701390309}
   m_Layer: 0
   m_Name: foods_6 (2)
   m_TagString: Untagged
@@ -4687,6 +4730,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1701390309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701390302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce80a0b0d9a6f843bba8606f261652a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 769682865}
 --- !u!1 &1771434849
 GameObject:
   m_ObjectHideFlags: 0

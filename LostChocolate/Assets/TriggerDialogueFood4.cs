@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class TriggerDialogueFood1 : MonoBehaviour
+public class TriggerDialogueFood4 : MonoBehaviour
 {
     public DialogueManager dialogueManager;
-    
+
 
     private bool hasTriggered = false;
 
@@ -13,15 +13,15 @@ public class TriggerDialogueFood1 : MonoBehaviour
         if (!hasTriggered && other.CompareTag("Player"))
         {
             hasTriggered = true;
-            StartFood1Dialogue();
+            StartFood4Dialogue();
         }
     }
 
-    void StartFood1Dialogue()
+    void StartFood4Dialogue()
     {
         List<DialogueLine> lines = new List<DialogueLine>()
         {
-            new DialogueLine("Fish - Safe Food", "Contains good protein and omega-3 source, healthy but slightly less appealing than chicken")
+            new DialogueLine("Chicken - Safe Food", "Highly nutritious, protein-rich, a favorite for dogs.")
         };
 
         dialogueManager.StartDialogue(lines);
