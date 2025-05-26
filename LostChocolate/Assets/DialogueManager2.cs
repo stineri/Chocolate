@@ -1,8 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager2 : MonoBehaviour
 {
     public Text nameText;
     public Text dialogueText;
@@ -10,17 +10,18 @@ public class DialogueManager : MonoBehaviour
     public GameObject choicesPanel; // Optional
     public Button[] choiceButtons;  // Optional
 
-    [Header("Player Control")]
-    public PlayerMovement playerMovement; // Optional player control reference
+    [Header("Audio")]
+    public AudioSource audioSource;
 
     private Queue<DialogueLine> dialogueLines = new Queue<DialogueLine>();
     private bool isDialogueActive = false;
+    private bool isWaitingForAudio = false;
 
     void Update()
     {
         bool choicePanelActive = choicesPanel != null && choicesPanel.activeSelf;
 
-        if (isDialogueActive && dialoguePanel.activeSelf && !choicePanelActive)
+        if (isDialogueActive && dialoguePanel.activeSelf && !choicePanelActive && !isWaitingForAudio)
         {
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return))
             {
@@ -40,9 +41,6 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(true);
         isDialogueActive = true;
 
-        if (playerMovement != null)
-            playerMovement.enabled = false;
-
         ShowNextLine();
     }
 
@@ -58,29 +56,43 @@ public class DialogueManager : MonoBehaviour
         nameText.text = line.speakerName;
         dialogueText.text = line.text;
 
-        if (line.voiceClip != null)
+        // Stop any current audio
+        if (audioSource != null && audioSource.isPlaying)
+            audioSource.Stop();
+
+        // If there's a voice clip, play and wait for it to finish
+        if (line.voiceClip != null && audioSource != null)
         {
-            GetComponent<AudioSource>().PlayOneShot(line.voiceClip);
+            audioSource.PlayOneShot(line.voiceClip);
+            isWaitingForAudio = true;
+            Invoke(nameof(ShowNextLine), line.voiceClip.length);
+            return;
         }
 
-        // Show choices if present and choicesPanel is assigned
+        // Show choices if present
         if (line.choices != null && line.choices.Count > 0 && choicesPanel != null && choiceButtons != null)
         {
             ShowChoices(line.choices);
             return;
         }
 
-        // Auto-advance if delay is set
+        // If autoAdvanceDelay is set, use it
         if (line.autoAdvanceDelay > 0f)
         {
             isDialogueActive = false;
             Invoke(nameof(ShowNextLine), line.autoAdvanceDelay);
+            return;
         }
+
+        // No audio, no choices, no delay → disappear after 2 seconds by default
+        isDialogueActive = false;
+        Invoke(nameof(ShowNextLine), 2f);
     }
 
     public void ShowChoices(List<DialogueChoice> choices)
     {
         isDialogueActive = false;
+        isWaitingForAudio = false;
 
         if (choicesPanel != null)
             choicesPanel.SetActive(true);
@@ -101,6 +113,7 @@ public class DialogueManager : MonoBehaviour
 
                     choices[choiceIndex].onChoose.Invoke();
                     isDialogueActive = true;
+                    ShowNextLine();
                 });
             }
             else
@@ -118,8 +131,6 @@ public class DialogueManager : MonoBehaviour
             choicesPanel.SetActive(false);
 
         isDialogueActive = false;
-
-        if (playerMovement != null)
-            playerMovement.enabled = true;
+        isWaitingForAudio = false;
     }
 }
