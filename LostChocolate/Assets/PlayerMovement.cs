@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,12 +8,16 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 10f;
     public float crouchSpeed = 2f;
     public float jumpForce = 10f;
+    public float Stamina, MaxStamina, RunCost, ChargeRate;
+
+    public Image StaminaBar;
 
     private Rigidbody2D rb;
     private bool grounded = false;
     private bool isStunned = false;
     private float stunTimer = 0f;
     private bool isFacingRight = true;
+    private Coroutine recharge;
 
     public Collider2D normalCollider;
     public Collider2D stunCollider;
@@ -49,9 +54,15 @@ public class PlayerMovement : MonoBehaviour
 
         Flip(hAxis);
 
-        if (Input.GetKey(KeyCode.LeftShift) && isMoving && !isCrouching)
+        if (Input.GetKey(KeyCode.LeftShift) && isMoving && !isCrouching && Stamina > 0f)
         {
             rb.linearVelocity = new Vector2(hAxis * runSpeed, rb.linearVelocity.y);
+            Stamina -= RunCost *Time.deltaTime;
+            if(Stamina < 0f) Stamina = 0f;
+            StaminaBar.fillAmount = Stamina / MaxStamina;
+
+            if(recharge != null) StopCoroutine(recharge);
+            recharge = StartCoroutine(RechargeStamina());
             SetAnimState("isRunning");
         }
         else if (isCrouching && isMoving)
@@ -85,7 +96,18 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private IEnumerator RechargeStamina ()
+    {
+        yield return new WaitForSeconds(3f);
 
+        while (Stamina < MaxStamina)
+        {
+            Stamina += ChargeRate / 10f;
+            if (Stamina > MaxStamina) Stamina = MaxStamina;
+            StaminaBar.fillAmount = Stamina / MaxStamina;
+            yield return new WaitForSeconds (.1f);
+        }
+    }
 
     private void HandleStun()
     {
@@ -137,6 +159,8 @@ public class PlayerMovement : MonoBehaviour
         {
             grounded = true;
         }
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
