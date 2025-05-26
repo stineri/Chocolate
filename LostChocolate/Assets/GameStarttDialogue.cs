@@ -16,6 +16,7 @@ public class GameStartDialogue : MonoBehaviour
     {
         List<DialogueLine> lines = new List<DialogueLine>()
         {
+            new DialogueLine("Tip", "Click Enter close dialogue"),
             new DialogueLine("Choco", "Buti nakaligtas ako... pero saan na ko pupunta ngayon?", line1Clip0),
             new DialogueLine("Choco", "Ay, ang dami palang gala dito sa kalsada...", line1Clip),
             new DialogueLine("Choco", "Kailangan ko talagang mag-ingat.", line2Clip)
