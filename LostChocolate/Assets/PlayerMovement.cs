@@ -18,6 +18,10 @@ public class PlayerMovement : MonoBehaviour
     private float stunTimer = 0f;
     private bool isFacingRight = true;
     private Coroutine recharge;
+    private Camera cam;
+    private float halfWidth;
+
+
 
     public Collider2D normalCollider;
     public Collider2D stunCollider;
@@ -27,12 +31,35 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        cam = Camera.main;
+        if (TryGetComponent<SpriteRenderer>(out SpriteRenderer sr))
+        {
+            halfWidth = sr.bounds.extents.x;
+        }
+        else
+        {
+            halfWidth = 0.5f; // Default fallback
+        }
+
         rb = GetComponent<Rigidbody2D>();
         EnableNormalCollider();
     }
 
     void Update()
     {
+
+        float moveInput = Input.GetAxisRaw("Horizontal");
+        Vector3 move = new Vector3(moveInput * speed * Time.deltaTime, 0f, 0f);
+        transform.position += move;
+
+        // Clamp the player within the camera's view
+        Vector3 pos = transform.position;
+
+        float minX = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane)).x + halfWidth;
+        float maxX = cam.ViewportToWorldPoint(new Vector3(1, 0, cam.nearClipPlane)).x - halfWidth;
+
+        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        transform.position = pos;
         if (isStunned)
         {
             HandleStun();
