@@ -878,7 +878,7 @@ MonoBehaviour:
   voiceClip2: {fileID: 8300000, guid: 25cb8fe0b8a2e9c4089fc8e93a5841aa, type: 3}
   voiceClip3: {fileID: 8300000, guid: 5d88715a8546d854cbe25655f1e1c0af, type: 3}
   voiceBread: {fileID: 8300000, guid: f3c90d425a82f2b4aa06eccde0c79a7d, type: 3}
-  voiceOffer: {fileID: 8300000, guid: 468f68325fc187142b4cd35b04745917, type: 3}
+  voiceOffer: {fileID: 8300000, guid: 0fd8f7763716a5d4f92369d58ad4feec, type: 3}
   voiceYes: {fileID: 0}
   voiceNo: {fileID: 0}
   voiceSad: {fileID: 8300000, guid: 60ef5574ffc16fa4c95c1b98bfb07407, type: 3}
