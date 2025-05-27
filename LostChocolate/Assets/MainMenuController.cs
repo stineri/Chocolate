@@ -10,9 +10,21 @@ public class MainMenuController : MonoBehaviour
 
     private void Start()
     {
+        // Debug null checks
+        if (settingsPanel == null)
+            Debug.LogError("Settings Panel is not assigned!");
+        if (volumeSlider == null)
+            Debug.LogError("Volume Slider is not assigned!");
+        if (musicSource == null)
+            Debug.LogWarning("Music Source is not assigned! Audio will only use AudioListener.volume.");
+
         // Load saved volume (if any)
         float volume = PlayerPrefs.GetFloat("Volume", 1f);
-        volumeSlider.value = volume;
+
+        // Protect against null volumeSlider
+        if (volumeSlider != null)
+            volumeSlider.value = volume;
+
         ApplyVolume(volume);
     }
 
@@ -23,12 +35,14 @@ public class MainMenuController : MonoBehaviour
 
     public void OpenSettings()
     {
-        settingsPanel.SetActive(true);
+        if (settingsPanel != null)
+            settingsPanel.SetActive(true);
     }
 
     public void CloseSettings()
     {
-        settingsPanel.SetActive(false);
+        if (settingsPanel != null)
+            settingsPanel.SetActive(false);
     }
 
     public void OnVolumeChange(float value)
