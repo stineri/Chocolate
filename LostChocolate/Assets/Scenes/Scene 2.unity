@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueManager2: {fileID: 1969259230}
-  playerVoiceClip1: {fileID: 0}
+  playerVoiceClip1: {fileID: 8300000, guid: b9cb31383e6612847878d338824e0070, type: 3}
 --- !u!61 &109639837
 BoxCollider2D:
   m_ObjectHideFlags: 0

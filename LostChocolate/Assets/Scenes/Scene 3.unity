@@ -4463,7 +4463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 851303185}
-  line5Clip: {fileID: 0}
+  line5Clip: {fileID: 8300000, guid: 11e640e99a73d534ba54f8978863d9df, type: 3}
 --- !u!61 &1181096896
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7544,7 +7544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 851303185}
-  finalClip: {fileID: 0}
+  finalClip: {fileID: 8300000, guid: 46ff7ded90bb8354aa88ec3bcb761468, type: 3}
 --- !u!1 &1710733390
 GameObject:
   m_ObjectHideFlags: 0
@@ -7763,9 +7763,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 851303185}
-  line1Clip0: {fileID: 0}
-  line1Clip: {fileID: 0}
-  line2Clip: {fileID: 0}
+  line1Clip0: {fileID: 8300000, guid: 5f65c7cb33da9d144a8d97b53067089f, type: 3}
+  line1Clip: {fileID: 8300000, guid: 39351606b271773439456d34e582bc3f, type: 3}
+  line2Clip: {fileID: 8300000, guid: 7976290b3ba905a44bbf0deec826d68a, type: 3}
 --- !u!4 &1714047092
 Transform:
   m_ObjectHideFlags: 0
