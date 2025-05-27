@@ -13,6 +13,7 @@ public class GameStartDialogue1 : MonoBehaviour
     {
         List<DialogueLine> lines = new List<DialogueLine>()
         {
+            new DialogueLine("Tip", "Click Enter to close dialogue"),
             new DialogueLine("Choco", "Grabe, gutom na gutom ako... \nbaka may pagkain dito sa palengke.", line1Clip1)
 
         };
