@@ -21,13 +21,17 @@ public class PlayerMovement : MonoBehaviour
     private Camera cam;
     private float halfWidth;
 
-
-
     public Collider2D normalCollider;
     public Collider2D stunCollider;
     public Collider2D crouchCollider;
 
     [SerializeField] private Animator animator;
+
+    // Mobile input flags
+    private float mobileInputX = 0f;
+    private bool mobileJump = false;
+    private bool mobileRun = false;
+    private bool mobileCrouch = false;
 
     void Start()
     {
@@ -38,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            halfWidth = 0.5f; // Default fallback
+            halfWidth = 0.5f;
         }
 
         rb = GetComponent<Rigidbody2D>();
@@ -47,19 +51,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
-        float moveInput = Input.GetAxisRaw("Horizontal");
-        Vector3 move = new Vector3(moveInput * speed * Time.deltaTime, 0f, 0f);
-        transform.position += move;
-
-        // Clamp the player within the camera's view
-        Vector3 pos = transform.position;
-
-        float minX = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane)).x + halfWidth;
-        float maxX = cam.ViewportToWorldPoint(new Vector3(1, 0, cam.nearClipPlane)).x - halfWidth;
-
-        pos.x = Mathf.Clamp(pos.x, minX, maxX);
-        transform.position = pos;
         if (isStunned)
         {
             HandleStun();
@@ -67,28 +58,27 @@ public class PlayerMovement : MonoBehaviour
         }
 
         float hAxis = Input.GetAxisRaw("Horizontal");
+        if (hAxis == 0f) hAxis = mobileInputX;
+
         bool isMoving = hAxis != 0f;
-        bool isCrouching = Input.GetKey(KeyCode.LeftControl);
+        bool isCrouching = Input.GetKey(KeyCode.LeftControl) || mobileCrouch;
+        bool isRunning = (Input.GetKey(KeyCode.LeftShift) || mobileRun);
 
         if (isCrouching)
-        {
             EnableCrouchCollider();
-        }
         else
-        {
             EnableNormalCollider();
-        }
 
         Flip(hAxis);
 
-        if (Input.GetKey(KeyCode.LeftShift) && isMoving && !isCrouching && Stamina > 0f)
+        if (isRunning && isMoving && !isCrouching && Stamina > 0f)
         {
             rb.linearVelocity = new Vector2(hAxis * runSpeed, rb.linearVelocity.y);
-            Stamina -= RunCost *Time.deltaTime;
-            if(Stamina < 0f) Stamina = 0f;
+            Stamina -= RunCost * Time.deltaTime;
+            if (Stamina < 0f) Stamina = 0f;
             StaminaBar.fillAmount = Stamina / MaxStamina;
 
-            if(recharge != null) StopCoroutine(recharge);
+            if (recharge != null) StopCoroutine(recharge);
             recharge = StartCoroutine(RechargeStamina());
             SetAnimState("isRunning");
         }
@@ -108,11 +98,12 @@ public class PlayerMovement : MonoBehaviour
             SetAnimState("isIdle");
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        if ((Input.GetKeyDown(KeyCode.Space) || mobileJump) && grounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             grounded = false;
             animator.SetBool("IsJumping", true);
+            mobileJump = false;
         }
 
         if (grounded)
@@ -120,10 +111,15 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsJumping", false);
         }
 
-
+        // Clamp player inside camera view
+        Vector3 clampedPos = transform.position;
+        float minX = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.nearClipPlane)).x + halfWidth;
+        float maxX = cam.ViewportToWorldPoint(new Vector3(1, 0, cam.nearClipPlane)).x - halfWidth;
+        clampedPos.x = Mathf.Clamp(clampedPos.x, minX, maxX);
+        transform.position = clampedPos;
     }
 
-    private IEnumerator RechargeStamina ()
+    private IEnumerator RechargeStamina()
     {
         yield return new WaitForSeconds(3f);
 
@@ -132,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
             Stamina += ChargeRate / 10f;
             if (Stamina > MaxStamina) Stamina = MaxStamina;
             StaminaBar.fillAmount = Stamina / MaxStamina;
-            yield return new WaitForSeconds (.1f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -140,7 +136,6 @@ public class PlayerMovement : MonoBehaviour
     {
         stunTimer -= Time.deltaTime;
         rb.linearVelocity = new Vector2(Mathf.Lerp(rb.linearVelocity.x, 0f, Time.deltaTime * 10f), rb.linearVelocity.y);
-
         SetAnimState("isStunned");
 
         if (stunTimer <= 0f)
@@ -150,8 +145,6 @@ public class PlayerMovement : MonoBehaviour
             EnableNormalCollider();
         }
     }
-
-
 
     public void EnableNormalCollider()
     {
@@ -184,22 +177,21 @@ public class PlayerMovement : MonoBehaviour
         {
             grounded = true;
         }
+    }
 
-
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            grounded = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("StunObject"))
         {
-            Stun(2f); // Stun for 2 seconds
-        }
-    }
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            grounded = false;
+            Stun(2f);
         }
     }
 
@@ -222,4 +214,11 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = localScale;
         }
     }
+
+    // ✅ Public methods for mobile buttons
+    public void SetMoveInput(float direction) => mobileInputX = direction;
+    public void StopMoveInput() => mobileInputX = 0f;
+    public void JumpButtonPressed() => mobileJump = true;
+    public void SetRun(bool value) => mobileRun = value;
+    public void SetCrouch(bool value) => mobileCrouch = value;
 }
